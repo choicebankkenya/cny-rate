@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choice Bank CNY Express</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .main-title {
+            font-weight: bold;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .sub-title {
+            font-size: 16px;
+            margin: 5px 0;
+            color: white; /* Added this line to make both sub-titles white */
+        }
+        .chinese {
+            color: white; /* Specifically ensure Chinese text is white */
+        }
+        .rates-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .rate-card {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border-left: 4px solid #0056b3;
+        }
+        .history-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .history-table th, .history-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .history-table th {
+            background-color: #f2f2f2;
+        }
+        .update-info {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+        .contact {
+            margin-top: 30px;
+            background-color: #e9f5ff;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .bilingual {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="main-title">Choice Bank CNY Express</div>
+        <div class="sub-title">Real-time RMB exchange rate</div>
+        <div class="sub-title chinese">人民币跨境支付实时汇率</div>
+    </header>
+    
+    <div class="rates-container">
+        <h2>
+            <span class="bilingual">Today's Rate / 今日汇率</span>
+            <span class="chinese" id="current-date"></span>
+        </h2>
+        
+        <div class="rate-card">
+            <div class="currency">
+                <span class="bilingual">Kenyan Shilling (KES) / 肯先令</span>
+            </div>
+            <div class="rate">1 CNY = 20.35 KES</div>
+        </div>
+        
+        <div class="rate-card">
+            <div class="currency">
+                <span class="bilingual">US Dollar (USD) / 美金</span>
+            </div>
+            <div class="rate">1 CNY = 0.14 USD</div>
+        </div>
+        
+        <div class="update-info">
+            <span class="bilingual">Last Updated: 2025年4月15日 09:00 / 最后更新时间</span>
+        </div>
+    </div>
+    
+    <div class="history-container">
+        <h2>
+            <span class="bilingual">Historical Rates / 历史汇率</span>
+        </h2>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Date / 日期</th>
+                    <th>CNY→KES</th>
+                    <th>CNY→USD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apr 14, 2025 (Mon)<br><span class="chinese">2025年4月14日 (周一)</span></td>
+                    <td>20.30</td>
+                    <td>0.141</td>
+                </tr>
+                <tr>
+                    <td>Apr 13, 2025 (Sun)<br><span class="chinese">2025年4月13日 (周日)</span></td>
+                    <td>20.28</td>
+                    <td>0.142</td>
+                </tr>
+                <tr>
+                    <td>Apr 12, 2025 (Sat)<br><span class="chinese">2025年4月12日 (周六)</span></td>
+                    <td>20.25</td>
+                    <td>0.140</td>
+                </tr>
+                <tr>
+                    <td>Apr 11, 2025 (Fri)<br><span class="chinese">2025年4月11日 (周五)</span></td>
+                    <td>20.32</td>
+                    <td>0.139</td>
+                </tr>
+                <tr>
+                    <td>Apr 10, 2025 (Thu)<br><span class="chinese">2025年4月10日 (周四)</span></td>
+                    <td>20.29</td>
+                    <td>0.138</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="contact">
+        <h3>
+            <span class="bilingual">Contact Us / 联系我们</span>
+        </h3>
+        <p><span class="bilingual">Phone/WhatsApp: +254 713639180 / 电话/WhatsApp: +254 713639180</span></p>
+        <p><span class="bilingual">WeChat: Choicebank / 微信: Choicebank</span></p>
+        <p><span class="bilingual">Address: 2nd Floor, Riverside Square, Nairobi / 地址: 内罗毕Riverside Square 2层</span></p>
+    </div>
+
+    <script>
+        // 自动显示当前日期 (英文在前)
+        const now = new Date();
+        const chineseOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+        const englishOptions = { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric', 
+            weekday: 'short' 
+        };
+        const englishDate = now.toLocaleDateString('en-US', englishOptions);
+        const chineseDate = now.toLocaleDateString('zh-CN', chineseOptions);
+        document.getElementById('current-date').textContent = `${englishDate} / ${chineseDate}`;
+    </script>
+</body>
+</html>
